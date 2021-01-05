@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\MealsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/novosti', 'App\Http\Controllers\NewsController@show');
+Route::get('/o-nama', function() {
+    return view('o-nama');
+});
+
+Route::get('/kontakt', function() {
+    return view('kontakt');
+});
+
+Route::get('/novosti', [NewsController::class, 'show']);
+
+Route::get('/novosti/create', [NewsController::class, 'showCreate']);
+
+Route::post('/novosti/create', [NewsController::class, 'create']);
 
 Route::get('/novosti/{slug}', [NewsController::class, 'showSpecific']);
+
+Route::get('/jela', [MealsController::class, 'show']);
+
+Route::get('/jela/create', [MealsController::class, 'showCreate']);
+
+Route::post('/jela/create', [MealsController::class, 'create']);
+
+Route::get('/jela/{slug}', [MealsController::class, 'showSpecific']);
+
