@@ -24,12 +24,7 @@ class NewsController extends Controller
 
     public function showSpecific($slug){
         $article = DB::table('news')->where('slug', $slug)->first();
-        return view('novosti.novost', [
-            'title' => $article->title,
-            'writtenOn' => $article->created_at,
-            'picture' => $article->picture,
-            'paragraph' => $article->text
-        ]);
+        return view('novosti.novost', ['article' => $article]);
     }
 
     public function create(){
@@ -45,7 +40,7 @@ class NewsController extends Controller
         $article->text = request('text');
         $article->summary = request('summary');
         if (request('pic')) {
-            $article->picture = "/public/" . request('pic')->store('img_novosti');
+            $article->picture = request('pic')->store('img_novosti');
         }
             
         $article->save();

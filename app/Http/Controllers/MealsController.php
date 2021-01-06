@@ -34,7 +34,7 @@ class MealsController extends Controller
         $meal->description = request('description');
         $meal->price = request('price');
         if (request('pic')) {
-            $meal->picture = "/public/" . request('pic')->store('img_jela');
+            $meal->picture = request('pic')->store('img_jela');
         }
             
         $meal->save();

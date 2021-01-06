@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form id="jelo" method="POST" action="/jela/create" enctype="multipart/form-data">
+        <form id="jelo" method="POST" action="{{ route('jelo.create') }}" enctype="multipart/form-data">
         @csrf
         <label for="name">Ime:</label><br>
 

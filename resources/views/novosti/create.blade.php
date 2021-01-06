@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <form id="novost" method="POST" action="/novosti/create" enctype="multipart/form-data">
+<form id="novost" method="POST" action="{{ route('novosti.create') }}" enctype="multipart/form-data">
         @csrf
         <label for="title">Naslov:</label><br>
 

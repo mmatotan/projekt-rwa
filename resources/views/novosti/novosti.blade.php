@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('content')
-    <br><button onclick="location.href = '/novosti/create';">Dodaj novu novost</button>
+    <br>
+    <a href="{{ route('novosti.showcreate') }}">Dodaj novu novost</a>
     
     @foreach($articles as $article)
         <a href={{ "novosti/" . $article->slug }}><h3>{{ $article->title }}</h3></a>
