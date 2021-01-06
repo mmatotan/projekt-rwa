@@ -32,7 +32,8 @@ Route::get('/novosti', [NewsController::class, 'show'])->name('novosti');
 Route::get('/novosti/create', [NewsController::class, 'showCreate'])->name('novosti.showcreate');
 Route::post('/novosti/create', [NewsController::class, 'create'])->name('novosti.create');
 Route::get('/novosti/{slug}', [NewsController::class, 'showSpecific']);
-Route::get('/novosti/{slug}/delete', [NewsController::class, 'destroy'])->name('novosti.destroy');
+Route::get('/novosti/{slug}/edit', [NewsController::class, 'edit'])->name('novosti.edit');
+Route::put('/novosti/{slug}', [NewsController::class, 'update'])->name('novosti.update');
 
 Route::get('/jela', [MealsController::class, 'show'])->name('jela');
 Route::get('/jela/create', [MealsController::class, 'showCreate'])->name('jela.showcreate');

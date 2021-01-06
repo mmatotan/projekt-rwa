@@ -47,4 +47,22 @@ class NewsController extends Controller
 
         return redirect('/novosti/' . $article->slug);
     }
+
+    public function edit($slug){
+        $article = DB::table('news')->where('slug', $slug)->first();
+
+        return view('novosti.edit', ['article' => $article]);
+    }
+
+    public function update($slug){
+        $article = DB::table('news')->where('slug', $slug)->first();
+
+        DB::table('news')->where('id', $article->id)->update(request()->validate([
+            'title' => 'required',
+            'summary' => 'required',
+            'text' => 'required', 
+        ]));
+
+        return redirect('/novosti/' . $article->slug);
+    }
 }

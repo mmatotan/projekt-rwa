@@ -5,4 +5,7 @@
     <small>{{ $article->created_at }}</small>
     <p>{{ $article->text }} </p>
     <img src="{{asset("storage/". $article->picture)}}" width="10%" heigh="10%">
+
+    <br>
+    <a href="{{ route('novosti.edit', ['slug' => $article->slug]) }}">Uredi</a>
 @stop
