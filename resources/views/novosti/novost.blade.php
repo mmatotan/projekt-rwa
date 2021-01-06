@@ -7,5 +7,6 @@
     <img src="{{asset("storage/". $article->picture)}}" width="10%" heigh="10%">
 
     <br>
-    <a href="{{ route('novosti.edit', ['slug' => $article->slug]) }}">Uredi</a>
+    <a href="{{ route('novosti.edit', ['slug' => $article->id]) }}">Uredi</a>
+    <a href="{{ route('novosti.destroy', ['slug' => $article->id])}}">Izbriši</a>
 @stop

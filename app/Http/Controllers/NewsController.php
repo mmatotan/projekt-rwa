@@ -22,8 +22,8 @@ class NewsController extends Controller
         return view('novosti.create');
     }
 
-    public function showSpecific($slug){
-        $article = DB::table('news')->where('slug', $slug)->first();
+    public function showSpecific($id){
+        $article = DB::table('news')->where('id', $id)->first();
         return view('novosti.novost', ['article' => $article]);
     }
 
@@ -45,17 +45,17 @@ class NewsController extends Controller
             
         $article->save();
 
-        return redirect('/novosti/' . $article->slug);
+        return redirect('/novosti/' . $article->id);
     }
 
-    public function edit($slug){
-        $article = DB::table('news')->where('slug', $slug)->first();
+    public function edit($id){
+        $article = DB::table('news')->where('id', $id)->first();
 
         return view('novosti.edit', ['article' => $article]);
     }
 
-    public function update($slug){
-        $article = DB::table('news')->where('slug', $slug)->first();
+    public function update($id){
+        $article = DB::table('news')->where('id', $id)->first();
 
         DB::table('news')->where('id', $article->id)->update(request()->validate([
             'title' => 'required',
@@ -63,6 +63,12 @@ class NewsController extends Controller
             'text' => 'required', 
         ]));
 
-        return redirect('/novosti/' . $article->slug);
+        return redirect('/novosti/' . $article->id);
+    }
+
+    public function destroy($id){
+        DB::table('news')->where('id', $id)->delete();
+
+        return redirect(route('novosti'));
     }
 }

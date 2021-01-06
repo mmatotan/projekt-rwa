@@ -45,10 +45,17 @@ class MealsController extends Controller
     public function showSpecific($slug){
         $meal = DB::table('meals')->where('slug', $slug)->first();
         return view('jela.jelo', [
+            'id' => $meal->id,
             'name' => $meal->name,
             'price' => $meal->price,
             'picture' => $meal->picture,
             'description' => $meal->description
         ]);
+    }
+
+    public function destroy($id){
+        DB::table('meals')->where('id', $id)->delete();
+
+        return redirect(route('jela'));
     }
 }

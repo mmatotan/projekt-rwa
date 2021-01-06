@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<form id="novost" method="POST" action="{{ route('novosti') . '/' . $article->slug}}" enctype="multipart/form-data">
+<form id="novost" method="POST" action="{{ route('novosti') . '/' . $article->id}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
