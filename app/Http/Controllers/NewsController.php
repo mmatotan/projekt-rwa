@@ -35,8 +35,9 @@ class NewsController extends Controller
         ]);
 
         $article = new News();
+        // Ne treba slug ako koristimo id
+        //$article->slug = strtolower(str_replace(" ", "-", $article->title));
         $article->title = request('title');
-        $article->slug = strtolower(str_replace(" ", "-", $article->title));
         $article->text = request('text');
         $article->summary = request('summary');
         if (request('pic')) {
@@ -62,6 +63,11 @@ class NewsController extends Controller
             'summary' => 'required',
             'text' => 'required', 
         ]));
+
+        if(request('pic')){
+            $picture = request('pic')->store('img_novosti');
+            DB::table('news')->where('id', $article->id)->update(['picture' => $picture]);
+        }
 
         return redirect('/novosti/' . $article->id);
     }

@@ -39,7 +39,9 @@ Route::get('/novosti/{slug}/delete', [NewsController::class, 'destroy'])->name('
 
 Route::get('/jela', [MealsController::class, 'show'])->name('jela');
 Route::get('/jela/create', [MealsController::class, 'showCreate'])->name('jela.showcreate');
-Route::post('/jela/create', [MealsController::class, 'create'])->name('jelo.create');
+Route::post('/jela/create', [MealsController::class, 'create'])->name('jela.create');
 Route::get('/jela/{slug}', [MealsController::class, 'showSpecific']);
-Route::get('/jela/{slug}/delete', [MealsController::class, 'destroy'])->name('jelo.destroy');
+Route::get('/jela/{slug}/edit', [MealsController::class, 'edit'])->name('jela.edit');
+Route::put('/jela/{slug}', [MealsController::class, 'update'])->name('jela.update');
+Route::get('/jela/{slug}/delete', [MealsController::class, 'destroy'])->name('jela.destroy');
 

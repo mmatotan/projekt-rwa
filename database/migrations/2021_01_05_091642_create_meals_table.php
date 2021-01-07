@@ -17,7 +17,7 @@ class CreateMealsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->char('name');
-            $table->char('slug', 50);
+            //$table->char('slug', 50);
             $table->float('price');
             $table->char('picture', 200)->nullable();
             $table->char('description', 50);

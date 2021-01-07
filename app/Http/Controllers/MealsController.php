@@ -21,6 +21,11 @@ class MealsController extends Controller
         return view('jela.create');
     }
 
+    public function showSpecific($id){
+        $meal = DB::table('meals')->where('id', $id)->first();
+        return view('jela.jelo', ['meal' => $meal]);
+    }
+
     public function create(){
         request()->validate([
             'name' => 'required',
@@ -30,7 +35,7 @@ class MealsController extends Controller
 
         $meal = new Meals();
         $meal->name = request('name');
-        $meal->slug = strtolower(str_replace(" ", "-", $meal->name));
+        //$meal->slug = strtolower(str_replace(" ", "-", $meal->name));
         $meal->description = request('description');
         $meal->price = request('price');
         if (request('pic')) {
@@ -39,23 +44,35 @@ class MealsController extends Controller
             
         $meal->save();
 
-        return redirect('/jela/' . $meal->slug);
+        return redirect('/jela/' . $meal->id);
     }
 
-    public function showSpecific($slug){
-        $meal = DB::table('meals')->where('slug', $slug)->first();
-        return view('jela.jelo', [
-            'id' => $meal->id,
-            'name' => $meal->name,
-            'price' => $meal->price,
-            'picture' => $meal->picture,
-            'description' => $meal->description
-        ]);
+    public function edit($id){
+        $meal = DB::table('meals')->where('id', $id)->first();
+        
+        return view('jela.edit', ['meal' => $meal]);
+    }
+    
+    public function update($id){
+        $meal = DB::table('meals')->where('id', $id)->first();
+        
+        DB::table('meals')->where('id', $meal->id)->update(request()->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required', 
+        ]));
+
+        if(request('pic')){
+            $picture = request('pic')->store('img_jela');
+            DB::table('meals')->where('id', $meal->id)->update(['picture' => $picture]);
+        }
+            
+        return redirect('/jela/' . $meal->id);
     }
 
     public function destroy($id){
         DB::table('meals')->where('id', $id)->delete();
-
         return redirect(route('jela'));
     }
+
 }

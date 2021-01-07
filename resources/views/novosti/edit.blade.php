@@ -34,9 +34,14 @@
                     <p class="help is-danger">Molimo vas da unesete tekst!</p>
                 @enderror
             </div>
-        <label for="pic">Slika:</label><br>
-        <input type="file" id="pic" name="pic" value="{{ $article->picture }}"><br>
+            <div>
+                <label for="pic">Slika:</label><br>
+                <input type="file" id="pic" name="pic"><br>
+                <p>
+                    Trenutna slika:<br><img src={{ asset("storage/". $article->picture) }} width="10%" heigh="10%">
+                </p>
+            </div>
         
-        <input type="submit" value="Objavi">
+        <input type="submit" value="Uredi">
     </form>
 @endsection

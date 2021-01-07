@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->char('title', 50);
-            $table->char('slug', 50);
+            //$table->char('slug', 50);
             $table->text('text');
             $table->char('picture', 200)->nullable();
             $table->char('summary', 50);
