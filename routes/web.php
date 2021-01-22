@@ -45,3 +45,11 @@ Route::get('/jela/{slug}/edit', [MealsController::class, 'edit'])->name('jela.ed
 Route::put('/jela/{slug}', [MealsController::class, 'update'])->name('jela.update');
 Route::get('/jela/{slug}/delete', [MealsController::class, 'destroy'])->name('jela.destroy');
 
+
+Auth::routes();
+
+Route::get('/login', function() {
+    return view('auth/login');
+})->name('login');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

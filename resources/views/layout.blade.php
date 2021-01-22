@@ -33,7 +33,8 @@
                 <a href="{{ route('o-nama') }}">O nama</a>
                 <a href="{{ route('kontakt') }}">Kontakt</a>
                 <a href="{{ route('jela') }}">Ponuda jela</a>
-                <a href="{{ route('novosti') }}">Novosti</a>
+				<a href="{{ route('novosti') }}">Novosti</a>
+                <a href="{{ route('login') }}">Login</a>
             </div>
 			<h1>Restoran</h1>
     </div>

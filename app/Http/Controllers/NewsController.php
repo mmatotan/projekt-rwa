@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
 use DB;
+use Gate;
 use Storage;
 
 class NewsController extends Controller
@@ -19,6 +20,10 @@ class NewsController extends Controller
     }
     
     public function showCreate(){
+        if(Gate::denies('edit-author')){
+            return redirect('/novosti');
+        }
+
         return view('novosti.create');
     }
 
@@ -28,6 +33,10 @@ class NewsController extends Controller
     }
 
     public function create(){
+        if(Gate::denies('edit-author')){
+            return redirect('/novosti');
+        }
+
         request()->validate([
             'title' => 'required',
             'summary' => 'required',
@@ -50,12 +59,20 @@ class NewsController extends Controller
     }
 
     public function edit($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/novosti');
+        }
+
         $article = DB::table('news')->where('id', $id)->first();
 
         return view('novosti.edit', ['article' => $article]);
     }
 
     public function update($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/novosti');
+        }
+
         $article = DB::table('news')->where('id', $id)->first();
 
         DB::table('news')->where('id', $article->id)->update(request()->validate([
@@ -73,6 +90,10 @@ class NewsController extends Controller
     }
 
     public function destroy($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/novosti');
+        }
+
         DB::table('news')->where('id', $id)->delete();
 
         return redirect(route('novosti'));

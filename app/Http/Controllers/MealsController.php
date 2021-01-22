@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\meals;
+use Gate;
 use DB;
 
 class MealsController extends Controller
@@ -18,6 +19,10 @@ class MealsController extends Controller
     }
 
     public function showCreate(){
+        if(Gate::denies('edit-author')){
+            return redirect('/jela');
+        }
+
         return view('jela.create');
     }
 
@@ -27,6 +32,10 @@ class MealsController extends Controller
     }
 
     public function create(){
+        if(Gate::denies('edit-author')){
+            return redirect('/jela');
+        }
+
         request()->validate([
             'name' => 'required',
             'price' => 'required',
@@ -48,12 +57,20 @@ class MealsController extends Controller
     }
 
     public function edit($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/jela');
+        }
+
         $meal = DB::table('meals')->where('id', $id)->first();
         
         return view('jela.edit', ['meal' => $meal]);
     }
     
     public function update($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/jela');
+        }
+
         $meal = DB::table('meals')->where('id', $id)->first();
         
         DB::table('meals')->where('id', $meal->id)->update(request()->validate([
@@ -71,6 +88,10 @@ class MealsController extends Controller
     }
 
     public function destroy($id){
+        if(Gate::denies('edit-author')){
+            return redirect('/jela');
+        }
+
         DB::table('meals')->where('id', $id)->delete();
         return redirect(route('jela'));
     }
