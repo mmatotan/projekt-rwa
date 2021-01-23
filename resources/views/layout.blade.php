@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style type="text/css">
 		.header{
 			width: 100%;
@@ -27,6 +28,7 @@
     <title>Document</title>
 </head>
 <body>
+	<div class = "container">
     <div class="header">
             <div style="text-align:right; font-size:25px">
                 <a href="/">Homepage</a>
@@ -34,10 +36,14 @@
                 <a href="{{ route('kontakt') }}">Kontakt</a>
                 <a href="{{ route('jela') }}">Ponuda jela</a>
 				<a href="{{ route('novosti') }}">Novosti</a>
-                <a href="{{ route('login') }}">Login</a>
-            </div>
-			<h1>Restoran</h1>
-    </div>
+				<a href="{{ route('login') }}">Login</a>
+				<a href="{{ route('webshop') }}">Dostava</a>
+			</div>
+			</div>
+		</div>
+		<h1>Restoran</h1>
+	</div>
+	</div>
 
     @yield('content')
 

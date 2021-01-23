@@ -18,7 +18,7 @@
             <div>
                 <label for="price">Cijena:</label><br>
                 <input type="number" step="0.01" id="price" name="price" value="{{ old('price') }}"
-                class="text @error('price') is-danger @enderror"><br>
+                class="input @error('price') is-danger @enderror"><br>
                 
                 @error('price')
                     <p class="help is-danger">Molimo vas da unesete cijenu jela!</p>

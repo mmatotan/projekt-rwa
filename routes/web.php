@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MealsController;
-
+use App\Http\Controllers\WebshopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,8 @@ Route::get('/jela/{slug}/edit', [MealsController::class, 'edit'])->name('jela.ed
 Route::put('/jela/{slug}', [MealsController::class, 'update'])->name('jela.update');
 Route::get('/jela/{slug}/delete', [MealsController::class, 'destroy'])->name('jela.destroy');
 
+Route::post('/webshop/order', [WebshopController::class, 'order'])->name('webshop.order');
+Route::get('/webshop', [WebshopController::class, 'show'])->name('webshop');
 
 Auth::routes();
 
