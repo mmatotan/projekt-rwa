@@ -18,7 +18,7 @@ use App\Http\Controllers\WebshopController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/o-nama', function() {
     return view('o-nama');
@@ -45,13 +45,18 @@ Route::get('/jela/{slug}/edit', [MealsController::class, 'edit'])->name('jela.ed
 Route::put('/jela/{slug}', [MealsController::class, 'update'])->name('jela.update');
 Route::get('/jela/{slug}/delete', [MealsController::class, 'destroy'])->name('jela.destroy');
 
-Route::post('/webshop/order', [WebshopController::class, 'order'])->name('webshop.order');
-Route::get('/webshop', [WebshopController::class, 'show'])->name('webshop');
+Route::post('/webshop/order', [WebshopController::class, 'order'])->name('webshop.order')->middleware('auth');
+Route::get('/webshop', [WebshopController::class, 'show'])->name('webshop')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/login', function() {
     return view('auth/login');
 })->name('login');
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return Redirect::to('login');
+})->name('logout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

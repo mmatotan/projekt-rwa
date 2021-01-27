@@ -28,21 +28,27 @@
     <title>Document</title>
 </head>
 <body>
-	<div class = "container">
-    <div class="header">
-            <div style="text-align:right; font-size:25px">
-                <a href="/">Homepage</a>
-                <a href="{{ route('o-nama') }}">O nama</a>
-                <a href="{{ route('kontakt') }}">Kontakt</a>
-                <a href="{{ route('jela') }}">Ponuda jela</a>
-				<a href="{{ route('novosti') }}">Novosti</a>
-				<a href="{{ route('login') }}">Login</a>
-				<a href="{{ route('webshop') }}">Dostava</a>
+	<div class="jumbotron" style="font-family: 'Times New Roman', serif;">
+		<div class="row">
+			<div class="col-md-5 col-sm-5 col-xs-5">
+				<h1 style="font-size:90px">Restoran</h1>
 			</div>
+			<div class="col-md-7 col-sm-7 col-xs-7">
+				<div style="text-align:right; font-size:20px">
+					<a href="/">Homepage</a>
+					<a href="{{ route('o-nama') }}">O nama</a>
+					<a href="{{ route('kontakt') }}">Kontakt</a>
+					<a href="{{ route('jela') }}">Ponuda jela</a>
+					<a href="{{ route('novosti') }}">Novosti</a>
+					@guest
+						<a href="{{ route('login') }}">Login</a>
+					@else
+						<a href="{{ route('logout') }}">Logout</a>
+					@endguest
+					<a href="{{ route('webshop') }}">Dostava</a>
+				</div>
 			</div>
-		</div>
-		<h1>Restoran</h1>
-	</div>
+		</div>	
 	</div>
 
     @yield('content')
